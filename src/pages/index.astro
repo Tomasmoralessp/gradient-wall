@@ -13,13 +13,16 @@ import Layout from "../layouts/Layout.astro";
           <div class="flex text-slate-900 dark:text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
+              viewBox="0 0 32 32"
               class="size-6 sm:size-6"
             >
-              <path
-                d="M5.625 3.75a2.625 2.625 0 1 0 0 5.25h12.75a2.625 2.625 0 0 0 0-5.25H5.625ZM3.75 11.25a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75ZM3 15.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3.75 18.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z"
-              ></path>
+              <defs>
+                <linearGradient id="navGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#FF6B6B"/>
+                  <stop offset="100%" style="stop-color:#4ECDC4"/>
+                </linearGradient>
+              </defs>
+              <rect x="4" y="4" width="24" height="24" rx="6" fill="url(#navGradient)"/>
             </svg>
           </div>
           <a href="#" class="text-base sm:text-base font-bold text-slate-900 dark:text-white flex">
