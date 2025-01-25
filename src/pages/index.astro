@@ -3,225 +3,450 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="GradientWall">
-  <main>
-    <!-- Header -->
-    <header
-      id="header"
-      class="dark:bg-slate-800 px-10 py-6 flex items-center fixed top-0 w-full justify-center gap-2 z-10"
-    >
-      <div class="flex text-white">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="size-6"
-        >
-          <path
-            d="M5.625 3.75a2.625 2.625 0 1 0 0 5.25h12.75a2.625 2.625 0 0 0 0-5.25H5.625ZM3.75 11.25a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75ZM3 15.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3.75 18.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z"
-          ></path>
-        </svg>
-      </div>
-      <a href="#" class="text-base font-bold text-white flex">
-        GradientWall®
-      </a>
-    </header>
-
-    <!-- Expandible Section -->
-    <section
-      id="expandableSection"
-      class="bg-black h-screen w-screen overflow-hidden text-center flex flex-col items-center absolute z-0"
-    >
-      <!-- Title -->
-      <div id="titleBox" class="mt-24">
-        <h2
-          class="text-white text-lg font-medium bg-slate-600 p-4 rounded-full border-white border select-none"
-        >
-          Select two colors:
-        </h2>
-      </div>
-
-      <!-- Gradient Box -->
-      <div
-        id="gradientBox"
-        class="mt-8 w-7/12 h-4/6 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-es-full grid grid-rows-12 grid-cols-12 p-4"
+  <div class="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300">
+    <main class="flex flex-col relative">
+      <!-- Header -->
+      <header
+        class="fixed top-0 left-0 right-0 z-50 w-full bg-white/10 dark:bg-black/50 px-4 sm:px-10 py-6 sm:py-4 flex items-center justify-between flex-shrink-0 backdrop-blur-sm border-b border-gray-800/50"
       >
-        <!-- Color Picker 1 -->
-        <div
-          class="h-12 w-12 shadow-md shadow-black flex justify-center items-center col-start-1 row-start-1"
-        >
-          <input
-            type="color"
-            id="color1"
-            value="#4f46e5"
-            class="w-full h-full hover:cursor-pointer"
-          />
+        <div class="flex items-center gap-2">
+          <div class="flex text-slate-900 dark:text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6 sm:size-6"
+            >
+              <path
+                d="M5.625 3.75a2.625 2.625 0 1 0 0 5.25h12.75a2.625 2.625 0 0 0 0-5.25H5.625ZM3.75 11.25a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75ZM3 15.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3.75 18.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5H3.75Z"
+              ></path>
+            </svg>
+          </div>
+          <a href="#" class="text-base sm:text-base font-bold text-slate-900 dark:text-white flex">
+            GradientWall®
+          </a>
         </div>
 
-        <!-- Expand Icon -->
-        <svg
-          id="expandGradient"
-          class="h-12 bg-slate-200 rounded-md hover:bg-slate-900 hover:cursor-pointer hover:text-white justify-self-end shadow-md shadow-black col-start-12"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
+        <!-- Theme Toggle Button -->
+        <button
+          id="themeToggle"
+          class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 transition-colors text-slate-900 dark:text-white"
+          aria-label="Toggle theme"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
-          ></path>
-        </svg>
+          <!-- Sun icon -->
+          <svg
+            id="sunIcon"
+            class="w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+            />
+          </svg>
 
-        <!-- Color Picker 2 -->
-        <div
-          class="h-12 shadow-md shadow-black w-12 flex justify-center items-center self-end justify-self-end col-start-12 row-start-12"
-        >
-          <input
-            type="color"
-            id="color2"
-            value="#ec4899"
-            class="w-full h-full hover:cursor-pointer"
-          />
+          <!-- Moon icon -->
+          <svg
+            id="moonIcon"
+            class="w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+            />
+          </svg>
+        </button>
+      </header>
+
+      <!-- Gradient Section -->
+      <section class="min-h-screen pt-20 flex flex-col items-center justify-center px-4">
+        <!-- Title -->
+        <div id="downloadHint" class="fixed top-24 left-1/2 -translate-x-1/2 mb-6 text-center opacity-0 transition-opacity duration-500">
+          <p class="text-white/90 text-sm bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
+            Double-click or long press to download
+          </p>
         </div>
-      </div>
-    </section>
-    <!-- Pop-Up Download Modal -->
-    <div
-      id="downloadPopup"
-      class="fixed hidden inset-0 flex justify-center items-center bg-black/50 z-50"
-    >
-      <div class="bg-slate-400 py-8 px-14 rounded-full text-center">
-        <p class="mb-4 mt-4 text-base text-gray-700 font-bold">
-          Download generated wallpaper?
-        </p>
-        <button
-          id="confirmDownload"
-          onclick="Download"
-          class="bg-slate-800 text-white px-6 py-2 rounded-full hover:bg-blue-500 border-white hover:border select-none"
-          >Sí</button
+
+        <!-- Gradient Box -->
+        <div
+          id="gradientBox"
+          class="w-full max-w-[500px] aspect-[4/5] sm:h-96 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl sm:rounded-3xl grid grid-rows-12 grid-cols-12 p-3 sm:p-4 hover:shadow-lg hover:shadow-white/20 transition-all duration-300 cursor-pointer"
         >
-        <button
-          id="cancelDownload"
-          onclick="TODO"
-          class="bg-gray-500 text-white px-6 py-2 rounded-full hover:bg-blue-500 ml-4 border-white hover:border select-none"
-          >No</button
-        >
-      </div>
-    </div>
-    <!-- Pop-Up Space Info Modal -->
-    <div
-      id="infoPopup"
-      class="fixed z-50 flex justify-center w-full bottom-0 hidden animate-bounce"
-    >
-      <div
-        id="infoCard"
-        class="bg-slate-600 py-6 px-32 mb-24 rounded-full text-white text-lg"
-      >
-        Press <strong> F11 </strong> to enter full mode screen
-      </div>
-    </div>
-  </main>
+          <!-- Color Picker 1 -->
+          <div
+            class="h-10 w-10 sm:h-12 sm:w-12 shadow-md shadow-black flex justify-center items-center col-start-1 row-start-1"
+          >
+            <input
+              type="color"
+              id="color1"
+              value="#4f46e5"
+              class="w-full h-full hover:cursor-pointer"
+            />
+          </div>
 
-  <!-- Script -->
-  <script>
-    const color1 = document.getElementById("color1");
-    const color2 = document.getElementById("color2");
-    const expandGradientButton = document.getElementById("expandGradient");
-    const expandableSection = document.getElementById("expandableSection");
-    const titleBox = document.getElementById("titleBox");
-    const gradientBox = document.getElementById("gradientBox");
-    const header = document.getElementById("header");
-    const downloadPopup = document.getElementById("downloadPopup");
-    const infoPoup = document.getElementById("infoPopup");
-    const infoCard = document.getElementById("infoCard");
-    const confirmDownload = document.getElementById("confirmDownload");
-    const cancelDownload = document.getElementById("cancelDownload");
+          <!-- Color Picker 2 -->
+          <div
+            class="h-10 w-10 sm:h-12 sm:w-12 shadow-md shadow-black flex justify-center items-center self-end justify-self-end col-start-12 row-start-12"
+          >
+            <input
+              type="color"
+              id="color2"
+              value="#ec4899"
+              class="w-full h-full hover:cursor-pointer"
+            />
+          </div>
+        </div>
+      </section>
 
-    [color1, color2].forEach((colorPicker) => {
-      colorPicker.addEventListener("input", () => {
-        const gradient = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
-        gradientBox.style.background = gradient;
-      });
-    });
+      <!-- Footer -->
+      <footer class="w-full bg-slate-800 py-12 sm:py-20 text-white">
+        <div class="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
+            <!-- About Section -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold">About GradientWall</h3>
+              <p class="text-gray-300 text-sm">
+                Create beautiful gradient wallpapers for your devices with just a few clicks.
+                Simple, fast, and completely free to use.
+              </p>
+              <div class="pt-4">
+                <button
+                  class="bg-slate-700 rounded-full px-4 py-2 text-white font-bold hover:bg-slate-600 transition-all duration-300"
+                  onclick="toggleTheme()"
+                >
+                  Toggle Theme
+                </button>
+              </div>
+            </div>
 
-    let isContentHidden = false; // Estado inicial
+            <!-- Quick Links -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold">Quick Links</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Features</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Gallery</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">FAQ</a>
+                </li>
+              </ul>
+            </div>
 
-    expandGradientButton.addEventListener("click", (event) => {
-      event.stopPropagation(); // Detiene la propagación del evento asegura que el cl en el botón no active el evento en su contenedor padre
+            <!-- Resources -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold">Resources</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Documentation</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">API</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a>
+                </li>
+              </ul>
+            </div>
 
-      const gradient = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
+            <!-- Connect -->
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold">Connect</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Twitter</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">GitHub</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">Discord</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-300 hover:text-white transition-colors">YouTube</a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-      if (!isContentHidden) {
-        // Alterar el fondo para usar el gradiente definido
-        expandableSection.classList.remove("bg-black");
-        expandableSection.style.background = gradient;
+          <!-- Additional Sections -->
+          <div class="mt-12 sm:mt-20 space-y-12 sm:space-y-16">
+            <!-- Features -->
+            <section class="text-center space-y-6">
+              <h3 class="text-2xl font-bold">Why Choose GradientWall?</h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="space-y-3">
+                  <div class="flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                    </svg>
+                  </div>
+                  <h4 class="font-semibold">Lightning Fast</h4>
+                  <p class="text-gray-300">Generate wallpapers instantly with no waiting time</p>
+                </div>
+                <div class="space-y-3">
+                  <div class="flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                    </svg>
+                  </div>
+                  <h4 class="font-semibold">All Screen Sizes</h4>
+                  <p class="text-gray-300">Perfect for any device resolution</p>
+                </div>
+                <div class="space-y-3">
+                  <div class="flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                  </div>
+                  <h4 class="font-semibold">Free Forever</h4>
+                  <p class="text-gray-300">No hidden costs or subscriptions</p>
+                </div>
+              </div>
+            </section>
 
-        // Ocultar los elementos
-        titleBox.classList.add("hidden");
-        header.classList.add("hidden");
-        gradientBox.classList.add("hidden");
-        infoPoup.classList.remove("hidden");
+            <!-- Newsletter -->
+            <section class="max-w-2xl mx-auto text-center space-y-6">
+              <h3 class="text-2xl font-bold">Stay Updated</h3>
+              <p class="text-gray-300">Get notified about new features and updates.</p>
+              <form class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto px-4">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  class="flex-1 px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 focus:outline-none focus:border-white transition-colors"
+                />
+                <button
+                  type="submit"
+                  class="px-6 py-2 bg-white text-slate-800 rounded-lg font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </section>
+          </div>
 
-        isContentHidden = true; // Actualizar el estado
-      }
-    });
-
-    // Manejar el clic en la sección completa para restaurar
-    expandableSection.addEventListener("click", () => {
-      if (isContentHidden) {
-        // Mostrar nuevamente los elementos
-        titleBox.classList.remove("hidden");
-        header.classList.remove("hidden");
-        gradientBox.classList.remove("hidden");
-
-        // Restaurar el fondo a negro
-        expandableSection.style.background = "";
-        expandableSection.classList.add("bg-black");
-
-        // Escodner el Pop Up con información para descargar
-        infoPoup.classList.add("hidden");
-
-        isContentHidden = false; // Actualizar el estado
-
-        // Mostrar información para que el usuario sepa que tiene que pulsar el SpaceBar
-      }
-    });
-
-    // Al pulsar espacio mostramos el pop up para descargar el archivo
-    document.addEventListener("keydown", async (event) => {
-      if (event.code === "F11") {
-        if (isContentHidden) {
-          // Cambiar el contenido del info Pop Up para mostrar el siguiente paso
-          // Press &#x2420 To Download
-          infoCard.innerHTML = "Press &#x2420 To Download";
-        }
-      }
-
-      if (event.code === "Space") {
-        event.preventDefault();
-
-        if (isContentHidden) {
-          // Mostrar el Pop-up
-          downloadPopup.classList.remove("hidden");
-          infoPoup.classList.remove("animate-bounce");
-          infoCard.classList.add("hidden");
-
-          // Press &#x2420 To Download
-        }
-      }
-    });
-
-    // Manejar los botones del Download PopUp
-    function Download() {
-      // Call function to minimize the Download Pop Up
-      // Download the wallpaper to the system
-      // Minimize the Gradient Wall and comeback to the homepage
-    }
-
-    function Minimize() {
-      // Minimize the Gradient Wall and comeback to the homepage
-    }
-  </script>
+          <!-- Copyright -->
+          <div class="mt-12 sm:mt-20 pt-8 border-t border-slate-700 text-center">
+            <p class="text-gray-300">
+              2024 GradientWall. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
 </Layout>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (max-width: 640px) {
+    input[type="color"] {
+      border-radius: 6px;
+    }
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  #downloadHint {
+    animation: fadeInOut 3s ease-in-out forwards;
+  }
+</style>
+
+<script>
+  // Función para establecer el tema
+  function setTheme(isDark) {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      document.getElementById('sunIcon').style.display = 'block';
+      document.getElementById('moonIcon').style.display = 'none';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.getElementById('sunIcon').style.display = 'none';
+      document.getElementById('moonIcon').style.display = 'block';
+    }
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  // Inicializar tema
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const savedTheme = localStorage.getItem('theme');
+  setTheme(savedTheme === 'dark' || (!savedTheme && prefersDark));
+
+  // Evento de click para cambiar el tema
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    setTheme(!isDark);
+  });
+
+  const color1 = document.getElementById("color1");
+  const color2 = document.getElementById("color2");
+  const gradientBox = document.getElementById("gradientBox");
+  const downloadHint = document.getElementById("downloadHint");
+
+  // Mostrar el hint al inicio
+  downloadHint.style.opacity = "1";
+  
+  // Ocultar el hint después de la animación
+  setTimeout(() => {
+    downloadHint.style.opacity = "0";
+    setTimeout(() => {
+      downloadHint.style.display = "none";
+    }, 500);
+  }, 3000);
+
+  // Actualizar el gradiente cuando se cambian los colores
+  [color1, color2].forEach((colorPicker) => {
+    colorPicker.addEventListener("input", updateGradient);
+  });
+
+  function updateGradient() {
+    const gradient = `linear-gradient(to right, ${color1.value}, ${color2.value})`;
+    gradientBox.style.background = gradient;
+  }
+
+  // Función para obtener la resolución real del dispositivo
+  function getScreenResolution() {
+    const dpr = window.devicePixelRatio || 1;
+
+    // Obtener dimensiones de todas las pantallas disponibles
+    let maxWidth = window.screen.width;
+    let maxHeight = window.screen.height;
+
+    // Si hay múltiples monitores, intentar obtener la resolución más alta
+    if (window.screen.orientation) {
+      maxWidth = Math.max(maxWidth, window.screen.availWidth);
+      maxHeight = Math.max(maxHeight, window.screen.availHeight);
+    }
+
+    // Aplicar el factor de pixel ratio para pantallas de alta densidad
+    return {
+      width: Math.round(maxWidth * dpr),
+      height: Math.round(maxHeight * dpr),
+    };
+  }
+
+  // Función para descargar el gradiente
+  function downloadWallpaper() {
+    try {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      if (!ctx) {
+        throw new Error("No se pudo obtener el contexto 2D del canvas");
+      }
+
+      // Obtener la resolución real del dispositivo
+      const resolution = getScreenResolution();
+      canvas.width = resolution.width;
+      canvas.height = resolution.height;
+
+      console.log("Generando wallpaper con resolución:", resolution);
+
+      // Crear y aplicar el gradiente
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      gradient.addColorStop(0, color1.value);
+      gradient.addColorStop(1, color2.value);
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Convertir canvas a imagen y descargar
+      const dataUrl = canvas.toDataURL("image/jpeg", 1.0);
+      const fileName = `gradient-wallpaper-${resolution.width}x${resolution.height}-${color1.value.substring(1)}-${color2.value.substring(1)}.jpg`;
+
+      const link = document.createElement("a");
+      link.download = fileName;
+      link.href = dataUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Añadir efecto visual de feedback
+      gradientBox.style.transform = "scale(0.98)";
+      setTimeout(() => {
+        gradientBox.style.transform = "scale(1)";
+      }, 200);
+    } catch (error) {
+      console.error("Error al generar el wallpaper:", error);
+      alert("Hubo un error al generar el wallpaper. Por favor, intenta de nuevo.");
+    }
+  }
+
+  // Variables para manejar el press largo
+  let pressTimer;
+  let hasDownloaded = false;
+
+  // Evento de doble clic para desktop
+  gradientBox.addEventListener("dblclick", (event) => {
+    event.preventDefault();
+    if (!hasDownloaded) {
+      hasDownloaded = true;
+      downloadWallpaper();
+      setTimeout(() => {
+        hasDownloaded = false;
+      }, 1000);
+    }
+  });
+
+  // Eventos para press largo en móvil
+  gradientBox.addEventListener("touchstart", (event) => {
+    if (event.target.closest('input[type="color"]')) return;
+    
+    hasDownloaded = false;
+    pressTimer = setTimeout(() => {
+      if (!hasDownloaded) {
+        hasDownloaded = true;
+        downloadWallpaper();
+      }
+    }, 500);
+  });
+
+  gradientBox.addEventListener("touchend", () => {
+    clearTimeout(pressTimer);
+    setTimeout(() => {
+      hasDownloaded = false;
+    }, 1000);
+  });
+
+  gradientBox.addEventListener("touchmove", () => {
+    clearTimeout(pressTimer);
+  });
+
+  // Prevenir el menú contextual en móvil
+  gradientBox.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+  });
+</script>
+
+<script>
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+  }
+</script>
