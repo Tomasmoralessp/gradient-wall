@@ -144,10 +144,10 @@ import ChatInterface from "../components/ChatInterface.astro";
       <footer class="w-full bg-slate-800 py-12 sm:py-20 text-white">
         <div class="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-12"
           >
             <!-- About Section -->
-            <div class="space-y-4">
+            <div class="space-y-4 border border-white/10 rounded-lg p-4">
               <h3 class="text-lg font-semibold">About GradientWall</h3>
               <p class="text-gray-300 text-sm">
                 Create beautiful gradient wallpapers for your devices with just
@@ -155,27 +155,8 @@ import ChatInterface from "../components/ChatInterface.astro";
               </p>
             </div>
 
-            <!-- Resources Section -->
-            <div class="space-y-4">
-              <h3 class="text-lg font-bold">Resources</h3>
-              <ul class="flex flex-col gap-2">
-                <li>
-                  <a
-                    href="https://gradientwall.com/docs"
-                    class="text-gray-300 dark:text-white">Documentation</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://gradientwall.com/faq"
-                    class="text-gray-300 dark:text-white">FAQ</a
-                  >
-                </li>
-              </ul>
-            </div>
-
             <!-- Social Media -->
-            <div class="space-y-4">
+            <div class="space-y-4 border border-white/10 rounded-lg p-4">
               <h3 class="text-lg font-bold">Follow Me</h3>
               <ul class="flex flex-col gap-2">
                 <li>
@@ -184,28 +165,18 @@ import ChatInterface from "../components/ChatInterface.astro";
                     class="text-gray-300 dark:text-white">GitHub</a
                   >
                 </li>
-                <li>
-                  <a
-                    href="https://twitter.com/Tomasmoralessp"
-                    class="text-gray-300 dark:text-white">Twitter</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/tom%C3%A1s-morales-galv%C3%A1n-a0568528b/"
-                    class="text-gray-300 dark:text-white">LinkedIn</a
-                  >
-                </li>
+                <a
+                  href="https://www.linkedin.com/in/tom%C3%A1s-morales-galv%C3%A1n-a0568528b/"
+                  class="text-gray-300 dark:text-white">LinkedIn</a
+                >
               </ul>
             </div>
           </div>
+        </div>
 
-          <!-- Copyright -->
-          <div
-            class="mt-12 sm:mt-20 pt-8 border-t border-slate-700 text-center"
-          >
-            <p class="text-gray-300">2024 GradientWall. All rights reserved.</p>
-          </div>
+        <!-- Copyright -->
+        <div class="mt-12 sm:mt-20 pt-8 border-t border-slate-700 text-center">
+          <p class="text-gray-300">2024 GradientWall. All rights reserved.</p>
         </div>
       </footer>
     </main>
